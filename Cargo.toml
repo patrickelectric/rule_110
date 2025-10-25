@@ -1,0 +1,21 @@
+[package]
+name = "rule110"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+rayon = "1.11.0"
+clap = { version = "4.4", features = ["derive"] }
+ocl = "0.19.7"
+
+[profile.release]
+opt-level = 3          # Optimize for maximum execution speed
+lto = "fat"            # Enable Link Time Optimization (LTO)
+codegen-units = 1      # Reduce the number of code generation units
+panic = "abort"        # Use 'abort' instead of 'unwind' for panic handling
+strip = "symbols"      # Strip symbols to reduce binary size
+target-cpu = "native"  # Optimize for the host CPU
+
+[features]
+default = []
+portable_simd = []
